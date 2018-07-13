@@ -1,0 +1,55 @@
+/* pages/home/home.wxss */
+.category-list {
+  z-index: 1;
+  background-color: white;
+  width: 100%;
+  text-align: center;
+  line-height: 100rpx;
+  position: fixed;
+}
+
+.category {
+  font-size: 50rpx;
+  display: inline-block;  
+  width: 23%;  
+  color: #cdcdcd;
+}
+
+.selectedCategory {
+  color: #00FF00;
+  border-bottom: 2rpx solid #00FF00;
+}
+
+.project-list {
+  position: absolute;
+  top: 100rpx;
+}
+
+.selectedProject {
+  background-color: #e6e6e6;
+}
+
+.project {
+  display: flex;
+  padding: 30rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #eee;
+  padding-bottom: 10rpx;
+}
+
+.project-icon {
+  width: 4.2rem;
+  height: 3rem;
+  padding-left: 20rpx;
+  padding-right: 50rpx;
+}
+
+.project-name {
+  font-weight: 400;
+  font-size: 50rpx;
+  text-overflow: ellipsis;
+  white-space:nowrap;
+  display: block;
+  width: 100%;
+  margin-bottom: 20rpx;
+}

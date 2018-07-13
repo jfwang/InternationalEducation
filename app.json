@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/papers/papers",
+    "pages/home/home",
+    "pages/popular/popular",
+    "pages/mine/mine",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "International Education",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "position": "bottom",
+    "selectedColor": "#00FF00",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-selected.png",
+        "text": "Home"
+      },
+      {
+        "pagePath": "pages/popular/popular",
+        "iconPath": "images/popular.png",
+        "selectedIconPath": "images/popular-selected.png",
+        "text": "Popular"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "images/mine.png",
+        "selectedIconPath": "images/mine-selected.png",
+        "text": "Mine"
+      }
+    ]
+  }
+}
