@@ -32,8 +32,66 @@ App({
         }
       }
     })
+
+    // 获取所有课程
+    var all_project_list = [
+      {
+        id: 0,
+        name: "Physics",
+        iconUrl: "../../images/projects/physics.png"
+      },
+      {
+        id: 1,
+        name: "Chemistry",
+        iconUrl: "../../images/projects/chemistry.png"
+      },
+      {
+        id: 2,
+        name: "Biology",
+        iconUrl: "../../images/projects/biology.png"
+      },
+      {
+        id: 3,
+        name: "Economics",
+        iconUrl: "../../images/projects/economics.png"
+      },
+      {
+        id: 4,
+        name: "Maths",
+        iconUrl: "../../images/projects/maths.png"
+      },
+      {
+        id: 5,
+        name: "Computer Science",
+        iconUrl: "../../images/projects/computer-science.png"
+      },
+      {
+        id: 6,
+        name: "Geography",
+        iconUrl: "../../images/projects/geography.png"
+      }
+    ]
+    this.globalData.allProjects = all_project_list
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    categories: [
+      {
+        id: 0,
+        name: "IGCSE"
+      },
+      {
+        id: 1,
+        name: "AS"
+      },
+      {
+        id: 2,
+        name: "Alevel"
+      },
+      {
+        id: 3,
+        name: "AP"
+      }],
+    allProjects: []
   }
 })

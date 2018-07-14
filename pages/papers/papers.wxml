@@ -1,7 +1,13 @@
 <!--pages/papers/papers.wxml-->
-<view>
-  <view>Slip to change year and season:</view>
-  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 50px;" value="{{ value }}" bindchange="bindChange">
+<view class="condition-list">
+  <picker-view indicator-style="height: 50px;" style="height: 50px;" value="{{ value }}" bindchange="bindChange">
+    <picker-view-column>
+      <image class="project-icon" src="{{ currentProject.iconUrl }}"></image>
+      <!--<view style="line-height: 50px">{{ currentProject.name }}</view>-->
+    </picker-view-column>
+    <picker-view-column>
+      <view style="line-height: 50px">{{ currentCategory.name }}</view>
+    </picker-view-column>
     <picker-view-column>
       <view wx:for="{{ years }}" wx:key="*this" style="line-height: 50px">{{ year }}</view>
     </picker-view-column>
@@ -9,4 +15,14 @@
       <view wx:for="{{ seasons }}" wx:key="*this" style="line-height: 50px">{{ season }}</view>
     </picker-view-column>
   </picker-view>
+</view>
+
+<view class="paper-list">
+  <block wx:for="{{ papers }}" wx:key="id" wx:for-item="paper">
+    <view class="paper {{ paper.id===currentPaper.id?'selectedPaper':'' }}" bindtap="onSelectPaper" data-paper-id="{{ paper.id }}">
+      <text class="paper-name">{{ paper.name }}</text>
+      <button></button>
+      <button></button>
+    </view>
+  </block>
 </view>

@@ -1,30 +1,18 @@
 // pages/home/home.js
+
+//获取应用实例
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    categories: [
-      {
-        id: 0,
-        name: "IGCSE"
-      },
-      {
-        id: 1,
-        name: "AS"
-      },
-      { 
-        id: 2,
-        name: "Alevel"
-      },
-      { 
-        id: 3,
-        name: "AP"
-      }],
-    currentCategory: 2,
+    categories: app.globalData.categories,
+    currentCategory: app.globalData.categories[2],
     projects: [],
-    currentProject: -1
+    currentProject: {}
   },
 
   /**
@@ -40,12 +28,14 @@ Page({
   onChangeCategory: function (event) {
     var cid = event.target.dataset.id
     // 判断是否需要切换类别
-    if (this.data.currentCategory !== cid) {
+    if (this.data.currentCategory.id !== cid) {
       this.setData({ 
-        currentCategory: cid,
-        currentProject: -1
+        currentCategory: app.globalData.categories[cid],
+        currentProject: {}
       })
-      this.getProjectList()
+      if (!this.data.projects[cid]) {
+        this.getProjectList()
+      }
     }
   },
   
@@ -53,10 +43,12 @@ Page({
    * 
    */
   getProjectList: function () {
-    var cid = this.data.currentCategory
+    var cid = this.data.currentCategory.id
     // get project list with cid
-    console.log("Try to get project list of " + this.data.categories[cid].name)
-    var project_list = [
+    console.log("Initializing project list of " + this.data.currentCategory.name)
+    
+    var project_list = this.data.projects
+    project_list[cid] = [
       {
         id: 0,
         name: "Physics",
@@ -84,16 +76,11 @@ Page({
       },
       {
         id: 5,
-        name: "Biology",
-        iconUrl: "../../images/projects/biology.png"
-      },
-      {
-        id: 6,
         name: "Computer Science",
         iconUrl: "../../images/projects/computer-science.png"
       },
       {
-        id: 7,
+        id: 6,
         name: "Geography",
         iconUrl: "../../images/projects/geography.png"
       }
@@ -108,16 +95,17 @@ Page({
    */
   onSelectProject: function(event) {
     var pid = event.currentTarget.dataset.projectId
-    if(this.data.currentProject === pid) {
+    var project = app.globalData.allProjects[pid]
+    if(this.data.currentProject.id === pid) {
       this.setData({
-        currentProject: -1 
+        currentProject: {}
       })
     } else {
       this.setData({
-        currentProject: pid
+        currentProject: project
       })
       wx.navigateTo({
-        url: '../papers/papers?categoryId=' + this.data.currentCategory + '&projectId=' + pid
+        url: '../papers/papers?categoryId=' + this.data.currentCategory.id + '&projectId=' + pid
       })
     }
   },
@@ -140,14 +128,29 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    var cid = this.data.currentCategory.id
+    var pid = this.data.currentProject.id
+    var project = app.globalData.allProjects[pid]
+    var newProjects = this.data.projects
+    // 删除pid对应的课程
+    for (var i = 0; i < newProjects[cid].length; i++) {
+      if (newProjects[cid][i].id === pid) {
+        newProjects[cid].splice(i, 1);
+        break;
+      }
+    }
+    // 加入头部
+    newProjects[cid].unshift(project)
+    this.setData({
+      projects: newProjects
+    })
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    // TODO: 永久化当前课程顺序  
   },
 
   /**

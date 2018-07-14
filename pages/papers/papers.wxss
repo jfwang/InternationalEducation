@@ -1,1 +1,42 @@
 /* pages/papers/papers.wxss */
+.condition-list {
+  z-index: 1;
+  background-color: white;
+  width: 100%;
+  text-align: center;
+  line-height: 100rpx;
+  position: fixed;
+}
+
+.project-icon {
+  width: 3rem;
+  padding-left: 20rpx;
+  padding-right: 50rpx;
+}
+
+.paper-list {
+  position: absolute;
+  top: 120rpx;
+}
+
+.selectedPaper {
+  background-color: #e6e6e6;
+}
+
+.paper {
+  display: flex;
+  padding: 30rpx;
+  align-items: center;
+  border-top: 1rpx solid #eee;
+  padding-bottom: 10rpx;
+}
+
+.paper-name {
+  font-weight: 400;
+  font-size: 50rpx;
+  text-overflow: ellipsis;
+  white-space:nowrap;
+  display: block;
+  width: 100%;
+  margin-bottom: 20rpx;
+}

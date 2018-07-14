@@ -1,55 +1,42 @@
 // pages/papers/papers.js
 const date = new Date();
+
+//获取应用实例
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    categories: [
-      {
-        id: 0,
-        name: "IGCSE"
-      },
-      {
-        id: 1,
-        name: "AS"
-      },
-      {
-        id: 2,
-        name: "Alevel"
-      },
-      {
-        id: 3,
-        name: "AP"
-      }],
-    currentCategory: 2,
-    projects: [],
-    currentProject: -1,
+    currentCategory: {},
+    currentProject: {},
     years: [],
     year: date.getFullYear(),
     seasons: [],
     season: "Summer",
-    value: [9999, 1]
+    value: [9999, 1],
+    papers: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var cid = options.categoryId
-    var pid = options.projectId
-    //this.setData({
-      // currentCategory: options.categoryId,
-      // currentProject: options.projectId
-    //})
-    this.getYearsAndSeasons();
-    this.getPaperList();
+    var cid = 2//options.categoryId
+    var pid = 1//options.projectId
+    this.setData({
+      currentCategory: app.globalData.categories[cid],
+      currentProject: app.globalData.allProjects[pid]
+    })
+    this.getYearsAndSeasons()
+    this.getPaperList()
   },
 
-  getYearsAndSeasons() {
-    var cid = this.data.currentCategory
-    var pid = this.data.currentProject
+  getYearsAndSeasons: function () {
+    var cid = this.data.currentCategory.id
+    var pid = this.data.currentProject.id
     // get years and seasons with cid and pid
     var year_list = [2017, 2016, 2015, 2014]
     var season_list = ["Summer", "Winter"]
@@ -62,19 +49,30 @@ Page({
   },
 
   getPaperList: function() {
-    var cid = this.data.currentCategory
-    var pid = this.data.currentProject
+    var cid = this.data.currentCategory.id
+    var pid = this.data.currentProject.id
     var year = this.data.year
     var season = this.data.season
-    console.log(cid + pid + year + season)
-    // get paper with
+    // get paper with cid, pid, year, season
+    var papers = []
+    for(var i = 0; i < 50; i ++) {
+      papers.push({
+        id: 0,
+        name: 11,
+        qpPath: "../../papers/qp11.pdf",
+        msPath: "../../papers/ms11.pdf"
+      })
+    }
+    this.setData({
+      papers: papers
+    }) 
   },
 
   bindChange: function (e) {
-    const val = e.detail.value;
+    const val = e.detail.value
     this.setData({
-      year: this.data.years[val[0]],
-      season: this.data.seasons[val[1]]
+      year: this.data.years[val[2]],
+      season: this.data.seasons[val[3]]
     })
   },
 
