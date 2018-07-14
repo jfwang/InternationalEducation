@@ -3,7 +3,6 @@
   <picker-view indicator-style="height: 50px;" style="height: 50px;" value="{{ value }}" bindchange="bindChange">
     <picker-view-column>
       <image class="project-icon" src="{{ currentProject.iconUrl }}"></image>
-      <!--<view style="line-height: 50px">{{ currentProject.name }}</view>-->
     </picker-view-column>
     <picker-view-column>
       <view style="line-height: 50px">{{ currentCategory.name }}</view>
@@ -19,10 +18,10 @@
 
 <view class="paper-list">
   <block wx:for="{{ papers }}" wx:key="id" wx:for-item="paper">
-    <view class="paper {{ paper.id===currentPaper.id?'selectedPaper':'' }}" bindtap="onSelectPaper" data-paper-id="{{ paper.id }}">
-      <text class="paper-name">{{ paper.name }}</text>
-      <button></button>
-      <button></button>
+    <view class="paper {{ paper.id===currentPaper.id?'selectedPaper':'' }}" data-paper-id="{{ paper.id }}">
+      <view class="paper-name">{{ paper.name }}</view>
+      <image class="paper-icon" bindtap="onOpenQP" data-paper-id="{{ paper.id }}" src="{{ paper.opened?'../../images/qp-opened.png':'../../images/qp.png'}}"></image>
+      <image class="paper-icon" bindtap="onOpenMS" data-paper-id="{{ paper.id }}" src="{{ paper.checked?'../../images/ms-opened.png':'../../images/ms.png' }}"></image>
     </view>
   </block>
 </view>

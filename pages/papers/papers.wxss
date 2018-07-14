@@ -15,6 +15,7 @@
 }
 
 .paper-list {
+  width: 100%;
   position: absolute;
   top: 120rpx;
 }
@@ -29,6 +30,13 @@
   align-items: center;
   border-top: 1rpx solid #eee;
   padding-bottom: 10rpx;
+}
+
+.paper-icon {
+  width: 4rem;
+  height: 2rem;
+  padding-left: 20rpx;
+  padding-right: 50rpx;
 }
 
 .paper-name {

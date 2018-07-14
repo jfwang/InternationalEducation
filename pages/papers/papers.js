@@ -57,8 +57,10 @@ Page({
     var papers = []
     for(var i = 0; i < 50; i ++) {
       papers.push({
-        id: 0,
+        id: i,
         name: 11,
+        opened: false,
+        checked: true,
         qpPath: "../../papers/qp11.pdf",
         msPath: "../../papers/ms11.pdf"
       })
@@ -70,10 +72,32 @@ Page({
 
   bindChange: function (e) {
     const val = e.detail.value
+    var year = this.data.years[val[2]]
+    var season = this.data.seasons[val[3]]
+    // 根据年份和季节获取试卷列表
+    var paper_list = []
+    for (var i = 0; i < 50; i++) {
+      paper_list.push({
+        id: 1,
+        name: 12,
+        qpPath: "../../papers/qp12.pdf",
+        msPath: "../../papers/ms12.pdf"
+      })
+    }
     this.setData({
-      year: this.data.years[val[2]],
-      season: this.data.seasons[val[3]]
+      year: year,
+      season: season,
+      papers: paper_list
     })
+  },
+  
+  onOpenQP: function(event) {
+    var paperId = event.target.dataset.paperId
+    console.log(paperId)  
+  },
+
+  onOpenMS: function(event) {
+
   },
 
   /**
