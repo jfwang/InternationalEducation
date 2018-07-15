@@ -95,17 +95,32 @@ Page({
    */
   onSelectProject: function(event) {
     var pid = event.currentTarget.dataset.projectId
-    var project = app.globalData.allProjects[pid]
     if(this.data.currentProject.id === pid) {
       this.setData({
         currentProject: {}
       })
     } else {
+      var project = app.globalData.allProjects[pid]
+      
+      var cid = this.data.currentCategory.id
+      var newProjects = this.data.projects
+      // 删除pid对应的课程
+      for (var i = 0; i < newProjects[cid].length; i++) {
+        if (newProjects[cid][i].id === pid) {
+          newProjects[cid].splice(i, 1);
+          break;
+        }
+      }
+      // 加入头部
+      newProjects[cid].unshift(project)
+
       this.setData({
-        currentProject: project
+        currentProject: project,
+        projects: newProjects
       })
+      var url = '../papers/papers?categoryId=' + this.data.currentCategory.id + '&projectId=' + pid
       wx.navigateTo({
-        url: '../papers/papers?categoryId=' + this.data.currentCategory.id + '&projectId=' + pid
+        url: url
       })
     }
   },
@@ -128,22 +143,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    var cid = this.data.currentCategory.id
-    var pid = this.data.currentProject.id
-    var project = app.globalData.allProjects[pid]
-    var newProjects = this.data.projects
-    // 删除pid对应的课程
-    for (var i = 0; i < newProjects[cid].length; i++) {
-      if (newProjects[cid][i].id === pid) {
-        newProjects[cid].splice(i, 1);
-        break;
-      }
-    }
-    // 加入头部
-    newProjects[cid].unshift(project)
-    this.setData({
-      projects: newProjects
-    })
+    
   },
 
   /**

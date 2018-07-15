@@ -24,8 +24,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var cid = 2//options.categoryId
-    var pid = 1//options.projectId
+    var cid = options.categoryId
+    var pid = options.projectId
     this.setData({
       currentCategory: app.globalData.categories[cid],
       currentProject: app.globalData.allProjects[pid]
@@ -60,7 +60,7 @@ Page({
         id: i,
         name: 11,
         opened: false,
-        checked: true,
+        checked: false,
         qpPath: "../../papers/qp11.pdf",
         msPath: "../../papers/ms11.pdf"
       })
@@ -93,7 +93,21 @@ Page({
   
   onOpenQP: function(event) {
     var paperId = event.target.dataset.paperId
-    console.log(paperId)  
+    console.log(paperId) 
+
+    var url = "https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tec17ksub.pdf"
+    wx.downloadFile({
+      url: url,
+      success: function (res) {
+        var filePath = res.tempFilePath
+        wx.openDocument({
+          filePath: filePath,
+          success: function (res) {
+            console.log('打开文档成功')
+          }
+        })
+      }
+    })
   },
 
   onOpenMS: function(event) {
