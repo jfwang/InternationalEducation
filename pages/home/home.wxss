@@ -1,7 +1,7 @@
 /* pages/home/home.wxss */
 .category-list {
   z-index: 1;
-  background-color: white;
+  background-color: ghostwhite;
   width: 100%;
   text-align: center;
   line-height: 100rpx;
@@ -18,16 +18,17 @@
 .selectedCategory {
   font-weight: bold;
   color: #00FF00;
-  border-bottom: 1rpx solid #00FF00;
+  border-bottom: 6rpx solid #00FF00;
 }
 
 .project-list {
   position: absolute;
-  top: 120rpx;
+  top: 100rpx;
 }
 
 .selectedProject {
-  background-color: #e6e6e6;
+  background-color: whitesmoke;
+  color: grey;
 }
 
 .project {

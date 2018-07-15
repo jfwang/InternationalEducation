@@ -57,8 +57,8 @@ App({
       },
       {
         id: 4,
-        name: "Maths",
-        iconUrl: "../../images/projects/maths.png"
+        name: "PureMath1",
+        iconUrl: "../../images/projects/maths-1.png"
       },
       {
         id: 5,
@@ -69,6 +69,11 @@ App({
         id: 6,
         name: "Geography",
         iconUrl: "../../images/projects/geography.png"
+      },
+      {
+        id: 7,
+        name: "PureMath2",
+        iconUrl: "../../images/projects/maths-2.png"
       }
     ]
     this.globalData.allProjects = all_project_list

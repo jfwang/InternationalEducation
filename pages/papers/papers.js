@@ -16,7 +16,7 @@ Page({
     year: date.getFullYear(),
     seasons: [],
     season: "Summer",
-    value: [9999, 1],
+    value: [],
     papers: []
   },
 
@@ -29,6 +29,9 @@ Page({
     this.setData({
       currentCategory: app.globalData.categories[cid],
       currentProject: app.globalData.allProjects[pid]
+    })
+    wx.setNavigationBarTitle({
+      title: this.data.currentCategory.name
     })
     this.getYearsAndSeasons()
     this.getPaperList()
@@ -72,8 +75,8 @@ Page({
 
   bindChange: function (e) {
     const val = e.detail.value
-    var year = this.data.years[val[2]]
-    var season = this.data.seasons[val[3]]
+    var year = this.data.years[val[1]]
+    var season = this.data.seasons[val[2]]
     // 根据年份和季节获取试卷列表
     var paper_list = []
     for (var i = 0; i < 50; i++) {
@@ -89,6 +92,7 @@ Page({
       season: season,
       papers: paper_list
     })
+    console.log(year + season)
   },
   
   onOpenQP: function(event) {
@@ -111,7 +115,22 @@ Page({
   },
 
   onOpenMS: function(event) {
+    var paperId = event.target.dataset.paperId
+    console.log(paperId)
 
+    var url = "https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tec17ksub.pdf"
+    wx.downloadFile({
+      url: url,
+      success: function (res) {
+        var filePath = res.tempFilePath
+        wx.openDocument({
+          filePath: filePath,
+          success: function (res) {
+            console.log('打开文档成功')
+          }
+        })
+      }
+    })
   },
 
   /**
