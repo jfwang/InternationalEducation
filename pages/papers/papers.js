@@ -75,8 +75,8 @@ Page({
 
   bindChange: function (e) {
     const val = e.detail.value
-    var year = this.data.years[val[1]]
-    var season = this.data.seasons[val[2]]
+    var year = this.data.years[val[0]]
+    var season = this.data.seasons[val[1]]
     // 根据年份和季节获取试卷列表
     var paper_list = []
     for (var i = 0; i < 50; i++) {

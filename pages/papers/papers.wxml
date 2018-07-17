@@ -1,17 +1,17 @@
 <!--pages/papers/papers.wxml-->
-<view class="condition-list">
+<view class="header">
+  <view class="project-icon-view">
+    <image class="project-icon" src="{{ currentProject.iconUrl }}"></image>
+  </view>
   <picker-view indicator-style="height: 50px;" style="height: 50px;" value="{{ value }}" bindchange="bindChange">
     <picker-view-column>
-      <image class="project-icon" src="{{ currentProject.iconUrl }}"></image>
-    </picker-view-column>
-    <picker-view-column>
-      <view wx:for="{{ years }}" wx:key="*this" style="line-height: 50px">
+      <view wx:for="{{ years }}" wx:key="*this" class="picker-view-item">
       {{ item }}
       <image class="scroll-icon" src="../../images/scroll.png"></image>
       </view>
     </picker-view-column>
     <picker-view-column>
-      <view wx:for="{{ seasons }}" wx:key="*this" style="line-height: 50px">
+      <view wx:for="{{ seasons }}" wx:key="*this" class="picker-view-item">
       {{ item }}
       <image class="scroll-icon" src="../../images/scroll.png"></image>
       </view>
@@ -23,8 +23,12 @@
   <block wx:for="{{ papers }}" wx:key="id" wx:for-item="paper">
     <view class="paper {{ paper.id===currentPaper.id?'selectedPaper':'' }}" data-paper-id="{{ paper.id }}">
       <view class="paper-name">{{ paper.name }}</view>
-      <image class="paper-icon" bindtap="onOpenQP" data-paper-id="{{ paper.id }}" src="{{ paper.opened?'../../images/qp-opened.png':'../../images/qp.png'}}"></image>
-      <image class="paper-icon" bindtap="onOpenMS" data-paper-id="{{ paper.id }}" src="{{ paper.checked?'../../images/ms-opened.png':'../../images/ms.png' }}"></image>
+      <view class="icon-view">
+        <image class="qp-icon" bindtap="onOpenQP" data-paper-id="{{ paper.id }}" src="{{ paper.opened?'../../images/qp-opened.png':'../../images/qp.png'}}"></image>
+      </view>
+      <view class="icon-view">
+        <image class="ms-icon" bindtap="onOpenMS" data-paper-id="{{ paper.id }}" src="{{ paper.checked?'../../images/ms-opened.png':'../../images/ms.png' }}"></image>
+      </view>
     </view>
   </block>
 </scroll-view>

@@ -8,60 +8,74 @@
   position: fixed;
 }
 
-.condition-list {
-  z-index: 1;
-  background-color: ghostwhite;
-  width: 100%;
-  text-align: center;
-  line-height: 100rpx;
-  position: fixed;
+.project-icon-view {
+  display: inline-block;
+  width: 30%;
 }
 
 .project-icon {
-  width: 3.2rem;
-  height: 3rem;
-  padding-left: 20rpx;
-  padding-right: 50rpx;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+picker-view {
+  display: inline-block;
+  width: 70%;
+}
+
+.picker-view-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .scroll-icon {
-  width: 1rem;
-  height: 1rem;
-  text-align: right;
+  width: 0.8rem;
+  height: 0.8rem;
 }
 
 .paper-list {
-  background-color: red;
+  background-color: ghostwhite;
   width: 100%;
   position: absolute;
-  top: 100rpx;
+  top: 50px;
 }
 
 .paper {
-  width: 100%;
+  margin: 20rpx;
+  margin-top: 0;
   background-color: white;
   display: flex;
-  padding: 30rpx;
+  padding: 10rpx;
   align-items: center;
-  border-top: 1rpx solid #eee;
-  padding-bottom: 10rpx;
-}
-
-.paper-icon {
-  width: 3rem;
-  height: 2rem;
-  padding-left: 100rpx;
-  padding-right: 100rpx;
 }
 
 .paper-name {
-  font-size: 50rpx;
+  font-size: 66rpx;
   font-weight: bold;
   color: red;
   text-overflow: ellipsis;
-  white-space:nowrap;
+  text-shadow: 10rpx 10rpx 10rpx #ccc;
+  white-space: nowrap;
   display: block;
-  width: 50%; 
-  padding-left: 40rpx;
-  margin-bottom: 20rpx;
+  width: 40%;
+  padding-left: 30rpx;
+}
+
+.icon-view {
+  width: 30%;
+}
+
+.qp-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.ms-icon {
+  width: 2rem;
+  height: 2rem;
+  padding-left: 50rpx;
 }
