@@ -10,25 +10,20 @@
 
 .category {
   font-size: 50rpx;
-  display: inline-block;  
+  display: inline-block;
   width: 23%;  
   color: #cdcdcd;
 }
 
 .selectedCategory {
   font-weight: bold;
-  color: #00FF00;
-  border-bottom: 6rpx solid #00FF00;
+  color: #1afa29;
+  border-bottom: 6rpx solid #1afa29;
 }
 
 .project-list {
   position: absolute;
   top: 100rpx;
-}
-
-.selectedProject {
-  background-color: whitesmoke;
-  color: grey;
 }
 
 .project {
@@ -37,6 +32,11 @@
   align-items: center;
   border-top: 1rpx solid #eee;
   padding-bottom: 10rpx;
+}
+
+.selectedProject {
+  background-color: whitesmoke;
+  color: grey;
 }
 
 .project-icon {
@@ -50,7 +50,8 @@
   font-weight: 400;
   font-size: 50rpx;
   text-overflow: ellipsis;
-  white-space:nowrap;
+  text-shadow: 10rpx 10rpx 10rpx #ccc;
+  white-space: nowrap;
   display: block;
   width: 100%;
   margin-bottom: 20rpx;

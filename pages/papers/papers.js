@@ -24,8 +24,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var cid = options.categoryId
-    var pid = options.projectId
+    var cid = 2//options.categoryId
+    var pid = 1//options.projectId
     this.setData({
       currentCategory: app.globalData.categories[cid],
       currentProject: app.globalData.allProjects[pid]
