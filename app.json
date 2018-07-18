@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index", 
     "pages/papers/papers",
     "pages/home/home",
     "pages/popular/popular",

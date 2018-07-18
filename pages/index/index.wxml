@@ -3,10 +3,13 @@
   <view class="userinfo">
     <block wx:if="{{!hasUserInfo && canIUse}}">
       <image class="userinfo-avatar" src="../../images/login.png" mode="cover"></image>
-      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> Authorize </button>
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">Login</button>
+      <navigator url="../home/home" open-type="reLaunch" hover-class="navigator-hover">
+        <button>Skip</button>
+      </navigator>
     </block>
     <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
