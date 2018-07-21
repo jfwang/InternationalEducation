@@ -1,0 +1,78 @@
+/* pages/papers/papers.wxss */
+.header {
+  z-index: 1;
+  background-color: ghostwhite;
+  width: 100%;
+  text-align: center;
+  line-height: 100rpx;
+  position: fixed;
+  display: flex;
+}
+
+.project-icon-view {
+  width: 30%;
+}
+
+.project-icon {
+  width: 100%;
+  height: 100%;
+}
+
+picker-view {
+  width: 70%;
+  height: 100%;
+}
+
+.picker-view-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-icon {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.paper-list {
+  background-color: #e6e6e6;
+  width: 100%;
+  position: absolute;
+  top: 100rpx;
+}
+
+.paper {
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  background-color: white;
+  display: flex;
+  padding: 10rpx;
+  align-items: center;
+}
+
+.paper-name {
+  font-size: 66rpx;
+  font-weight: bold;
+  color: red;
+  text-overflow: ellipsis;
+  text-shadow: 10rpx 10rpx 10rpx #ccc;
+  white-space: nowrap;
+  display: block;
+  width: 40%;
+  padding-left: 60rpx;
+}
+
+.icon-view {
+  width: 60%;
+}
+
+.qp-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.ms-icon {
+  width: 2rem;
+  height: 2rem;
+  padding-left: 160rpx;
+}

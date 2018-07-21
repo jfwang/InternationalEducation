@@ -1,0 +1,31 @@
+<!--pages/mine/mine.wxml-->
+<view class="user-container">
+  <view class="userinfo">
+    <block wx:if="{{!hasUserInfo && canIUse}}">
+      <image class="userinfo-avatar" src="../../images/login.png" mode="cover"></image>
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">Login</button>
+    </block>
+    <block wx:else>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}, you have finished {{ finishedCount }} papers!</text>
+    </block>
+  </view>
+
+  <view class="item">
+    <image class="icon" src="../../images/favorite.png"></image>
+    <label class="text">Favorite</label>
+    <image class="arrow" src="../../images/arrow.png"></image>
+  </view>
+
+  <view class="item">
+    <image class="icon" src="../../images/history.png"></image>
+    <label class="text">History</label>
+    <image class="arrow" src="../../images/arrow.png"></image>
+  </view>
+
+  <view class="item">
+    <image class="icon" src="../../images/contact.png"></image>
+    <label class="text">Contact us</label>
+    <image class="arrow" src="../../images/arrow.png"></image>
+  </view>
+</view>

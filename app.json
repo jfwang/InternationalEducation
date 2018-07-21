@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/index/index", 
-    "pages/papers/papers",
+    "pages/index/index",
     "pages/home/home",
-    "pages/popular/popular",
-    "pages/mine/mine",
-    "pages/logs/logs"
+    "pages/me/me",
+    "pages/logs/logs",
+    "pages/papers/withPicker/papers",
+    "pages/papers/withoutPicker/papers"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -25,16 +25,10 @@
         "text": "Home"
       },
       {
-        "pagePath": "pages/popular/popular",
-        "iconPath": "images/popular.png",
-        "selectedIconPath": "images/popular-selected.png",
-        "text": "Popular"
-      },
-      {
-        "pagePath": "pages/mine/mine",
-        "iconPath": "images/mine.png",
-        "selectedIconPath": "images/mine-selected.png",
-        "text": "Mine"
+        "pagePath": "pages/me/me",
+        "iconPath": "images/me.png",
+        "selectedIconPath": "images/me-selected.png",
+        "text": "Me"
       }
     ]
   }

@@ -9,9 +9,9 @@
 }
 
 .category {
-  font-size: 50rpx;
+  font-size: 38rpx;
   display: inline-block;
-  width: 23%;  
+  width: 19.5%;  
   color: #cdcdcd;
 }
 

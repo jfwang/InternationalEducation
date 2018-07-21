@@ -17,15 +17,17 @@ Page({
     seasons: [],
     season: "Summer",
     value: [],
-    papers: []
+    papers: [],
+    projectIconPath: '../../../images/projects/',
+    otherIconPath: '../../../images/'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var cid = 2//options.categoryId
-    var pid = 1//options.projectId
+    var cid = options.categoryId
+    var pid = options.projectId
     this.setData({
       currentCategory: app.globalData.categories[cid],
       currentProject: app.globalData.allProjects[pid]
@@ -63,9 +65,7 @@ Page({
         id: i,
         name: 11,
         opened: false,
-        checked: false,
-        qpPath: "../../papers/qp11.pdf",
-        msPath: "../../papers/ms11.pdf"
+        checked: false
       })
     }
     this.setData({
@@ -83,8 +83,8 @@ Page({
       paper_list.push({
         id: 1,
         name: 12,
-        qpPath: "../../papers/qp12.pdf",
-        msPath: "../../papers/ms12.pdf"
+        opened: false,
+        checked: false
       })
     }
     this.setData({

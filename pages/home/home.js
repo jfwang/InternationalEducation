@@ -12,6 +12,7 @@ Page({
     categories: app.globalData.categories,
     currentCategory: app.globalData.categories[2],
     projects: [],
+    projectIconPath: '../../images/projects/',
     currentProject: {}
   },
 
@@ -51,43 +52,35 @@ Page({
     project_list[cid] = [
       {
         id: 0,
-        name: "Physics",
-        iconUrl: "../../images/projects/physics.png"
+        name: "Physics"
       },
       {
         id: 1,
-        name: "Chemistry",
-        iconUrl: "../../images/projects/chemistry.png"
+        name: "Chemistry"
       },
       {
         id: 2,
-        name: "Biology",
-        iconUrl: "../../images/projects/biology.png"
+        name: "Biology"
       },
       {
         id: 3,
-        name: "Economics",
-        iconUrl: "../../images/projects/economics.png"
+        name: "Economics"
       },
       {
         id: 4,
-        name: "PureMath1",
-        iconUrl: "../../images/projects/maths-1.png"
+        name: "PureMath1"
       },
       {
         id: 5,
-        name: "Computer Science",
-        iconUrl: "../../images/projects/computer-science.png"
+        name: "Computer Science"
       },
       {
         id: 6,
-        name: "Geography",
-        iconUrl: "../../images/projects/geography.png"
+        name: "Geography"
       },
       {
         id: 7,
-        name: "PureMath2",
-        iconUrl: "../../images/projects/maths-2.png"
+        name: "PureMath2"
       }
     ]
     this.setData({
@@ -117,7 +110,8 @@ Page({
       currentProject: project,
       projects: newProjects
     })
-    var url = '../papers/papers?categoryId=' + this.data.currentCategory.id + '&projectId=' + pid
+    var baseUrl = cid < 3 ? '../papers/withPicker/papers' : '../papers/withoutPicker/papers'
+    var url = baseUrl + '?categoryId=' + this.data.currentCategory.id + '&projectId=' + pid
     wx.navigateTo({
       url: url
     })
