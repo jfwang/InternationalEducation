@@ -74,15 +74,10 @@ picker-view {
 
 .icon-view {
   width: 60%;
+  display: flex;
 }
 
-.qp-icon {
+.icon {
   width: 2rem;
   height: 2rem;
-}
-
-.ms-icon {
-  width: 2rem;
-  height: 2rem;
-  padding-left: 160rpx;
 }

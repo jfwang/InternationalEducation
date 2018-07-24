@@ -3,7 +3,7 @@
   <view class="project-icon-view">
     <image mode="aspectFit" class="project-icon" src="{{ currentProject.name ? projectIconPath + currentProject.name + '.png' : '' }}"></image>
   </view>
-  <block wx:if="{{ currentCategory.name != 'AP'}}">
+  <block wx:if="{{ currentCategory.name != 'AP' }}">
     <picker-view indicator-style="height: 50px;" style="height: 50px;" value="{{ value }}" bindchange="bindChange">
       <picker-view-column>
         <view wx:for="{{ years }}" wx:key="*this" class="picker-view-item">
@@ -29,8 +29,14 @@
     <view class="paper">
       <view class="paper-name">{{ paper.name }}</view>
       <view class="icon-view">
-        <image class="qp-icon" bindtap="onOpenQP" data-paper-id="{{ paper.id }}" src="{{ paper.opened ? otherIconPath + 'qp-opened.png' : otherIconPath + 'qp.png' }}"></image>
-        <image class="ms-icon" bindtap="onOpenMS" data-paper-id="{{ paper.id }}" src="{{ paper.checked ? otherIconPath + 'ms-checked.png' : otherIconPath + 'ms.png' }}"></image>
+        <image class="icon" bindtap="onOpenQP" data-paper-id="{{ paper.id }}" src="{{ paper.opened ? otherIconPath + 'qp-opened.png' : otherIconPath + 'qp.png' }}"></image>
+        <block wx:if="{{ currentCategory.name == 'IGCSE' && currentProject.name == 'Physics' }}">
+          <image class="icon" style="padding-left:60rpx" bindtap="onOpenMS" data-paper-id="{{ paper.id }}" src="{{ paper.checked ? otherIconPath + 'ms-checked.png' : otherIconPath + 'ms.png' }}"></image>
+          <image class="icon" style="padding-left:60rpx" bindtap="onOpenInsert" data-paper-id="{{ paper.id }}" src="{{ otherIconPath + 'insert.png' }}"></image>
+        </block>
+        <block wx:else>
+          <image class="icon" style="padding-left:160rpx" bindtap="onOpenMS" data-paper-id="{{ paper.id }}" src="{{ paper.checked ? otherIconPath + 'ms-checked.png' : otherIconPath + 'ms.png' }}"></image>
+        </block>
       </view>
     </view>
   </block>

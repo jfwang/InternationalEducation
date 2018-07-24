@@ -18,8 +18,9 @@ Page({
     season: "Summer",
     value: [],
     papers: [],
-    projectIconPath: '../../../images/projects/',
-    otherIconPath: '../../../images/'
+    isDownloading: false,
+    projectIconPath: '../../images/projects/',
+    otherIconPath: '../../images/'
   },
 
   /**
@@ -96,22 +97,31 @@ Page({
   },
   
   onOpenQP: function(event) {
-    var paperId = event.target.dataset.paperId
-    console.log(paperId) 
+    if(!this.data.isDownloading) {
+      this.setData({
+        isDownloading: true
+      })
+      var paperId = event.target.dataset.paperId
+      console.log(paperId) 
 
-    var url = "https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tec17ksub.pdf"
-    wx.downloadFile({
-      url: url,
-      success: function (res) {
-        var filePath = res.tempFilePath
-        wx.openDocument({
-          filePath: filePath,
-          success: function (res) {
-            console.log('打开文档成功')
-          }
-        })
-      }
-    })
+      var url = "https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tec17ksub.pdf"
+
+      wx.downloadFile({
+        url: url,
+        success: function (res) {
+          var filePath = res.tempFilePath
+          wx.openDocument({
+            filePath: filePath,
+            success: function (res) {
+              console.log('打开文档成功')
+            }
+          })
+        }
+      })
+      this.setData({
+        isDownloading: false
+      })
+    }
   },
 
   onOpenMS: function(event) {
