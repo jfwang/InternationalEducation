@@ -40,7 +40,7 @@
 }
 
 .project-icon {
-  width: 4.2rem;
+  width: 3rem;
   height: 3rem;
   padding-left: 20rpx;
   padding-right: 50rpx;
@@ -49,10 +49,11 @@
 .project-name {
   font-weight: 400;
   font-size: 50rpx;
+  overflow: hidden;
   text-overflow: ellipsis;
   text-shadow: 10rpx 10rpx 10rpx #ccc;
   white-space: nowrap;
   display: block;
-  width: 100%;
+  width: 70%;
   margin-bottom: 20rpx;
 }

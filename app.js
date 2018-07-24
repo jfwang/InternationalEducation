@@ -56,11 +56,11 @@ App({
       },
       {
         id: 2,
-        name: "Biology"
+        name: "Comparative Government"
       },
       {
         id: 3,
-        name: "Economics"
+        name: "Chinese-Second Language"
       },
       {
         id: 4,
@@ -72,11 +72,11 @@ App({
       },
       {
         id: 6,
-        name: "Geography"
+        name: "Mathematics-Additional"
       },
       {
         id: 7,
-        name: "PureMath2"
+        name: "English-Second Language"
       }
     ]
     this.globalData.allProjects = all_project_list

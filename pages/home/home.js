@@ -60,11 +60,11 @@ Page({
       },
       {
         id: 2,
-        name: "Biology"
+        name: "Comparative Government"
       },
       {
         id: 3,
-        name: "Economics"
+        name: "Chinese-Second Language"
       },
       {
         id: 4,
@@ -76,11 +76,11 @@ Page({
       },
       {
         id: 6,
-        name: "Geography"
+        name: "Mathematics-Additional"
       },
       {
         id: 7,
-        name: "PureMath2"
+        name: "English-Second Language"
       }
     ]
     this.setData({
@@ -110,8 +110,7 @@ Page({
       currentProject: project,
       projects: newProjects
     })
-    var baseUrl = cid < 3 ? '../papers/withPicker/papers' : '../papers/withoutPicker/papers'
-    var url = baseUrl + '?categoryId=' + this.data.currentCategory.id + '&projectId=' + pid
+    var url = '../papers/papers?categoryId=' + this.data.currentCategory.id + '&projectId=' + pid
     wx.navigateTo({
       url: url
     })

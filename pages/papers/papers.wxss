@@ -18,10 +18,30 @@
   height: 100%;
 }
 
-.project-name {
-  font-size: 50rpx;
+picker-view {
   width: 70%;
+  height: 100%;
+}
+
+.picker-view-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-icon {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.project-name {
+  width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 40rpx;
   text-align: center;
+  text-shadow: 10rpx 10rpx 10rpx #ccc;
 }
 
 .paper-list {

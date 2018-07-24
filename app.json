@@ -1,11 +1,9 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/home/home",
     "pages/me/me",
     "pages/logs/logs",
-    "pages/papers/withPicker/papers",
-    "pages/papers/withoutPicker/papers"
+    "pages/papers/papers"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -3,20 +3,25 @@
   <view class="project-icon-view">
     <image mode="aspectFit" class="project-icon" src="{{ currentProject.name ? projectIconPath + currentProject.name + '.png' : '' }}"></image>
   </view>
-  <picker-view indicator-style="height: 50px;" style="height: 50px;" value="{{ value }}" bindchange="bindChange">
-    <picker-view-column>
-      <view wx:for="{{ years }}" wx:key="*this" class="picker-view-item">
-      {{ item }}
-      <image class="scroll-icon" src="{{ otherIconPath + 'scroll.png' }}"></image>
-      </view>
-    </picker-view-column>
-    <picker-view-column>
-      <view wx:for="{{ seasons }}" wx:key="*this" class="picker-view-item">
-      {{ item }}
-      <image class="scroll-icon" src="{{ otherIconPath + 'scroll.png' }}"></image>
-      </view>
-    </picker-view-column>
-  </picker-view>
+  <block wx:if="{{ currentCategory.name != 'AP'}}">
+    <picker-view indicator-style="height: 50px;" style="height: 50px;" value="{{ value }}" bindchange="bindChange">
+      <picker-view-column>
+        <view wx:for="{{ years }}" wx:key="*this" class="picker-view-item">
+          {{ item }}
+          <image class="scroll-icon" src="{{ otherIconPath + 'scroll.png' }}"></image>
+        </view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{ seasons }}" wx:key="*this" class="picker-view-item">
+          {{ item }}
+          <image class="scroll-icon" src="{{ otherIconPath + 'scroll.png' }}"></image>
+        </view>
+      </picker-view-column>
+    </picker-view>
+  </block>
+  <block wx:else>
+    <text class="project-name">{{ currentProject.name }}</text>
+  </block>
 </view>
 
 <scroll-view class="paper-list">
