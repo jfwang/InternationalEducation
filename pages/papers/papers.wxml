@@ -29,13 +29,10 @@
     <view class="paper">
       <view class="paper-name">{{ paper.name }}</view>
       <view class="icon-view">
-        <image class="icon" bindtap="onOpenQP" data-paper-id="{{ paper.id }}" src="{{ paper.opened ? otherIconPath + 'qp-opened.png' : otherIconPath + 'qp.png' }}"></image>
-        <block wx:if="{{ currentCategory.name == 'IGCSE' && currentProject.name == 'Physics' }}">
-          <image class="icon" style="padding-left:60rpx" bindtap="onOpenMS" data-paper-id="{{ paper.id }}" src="{{ paper.checked ? otherIconPath + 'ms-checked.png' : otherIconPath + 'ms.png' }}"></image>
-          <image class="icon" style="padding-left:60rpx" bindtap="onOpenInsert" data-paper-id="{{ paper.id }}" src="{{ otherIconPath + 'insert.png' }}"></image>
-        </block>
-        <block wx:else>
-          <image class="icon" style="padding-left:160rpx" bindtap="onOpenMS" data-paper-id="{{ paper.id }}" src="{{ paper.checked ? otherIconPath + 'ms-checked.png' : otherIconPath + 'ms.png' }}"></image>
+        <image class="icon" bindtap="onOpenPaper" data-id="{{ paper.id }}" data-type="QP" src="{{ paper.opened ? otherIconPath + 'qp-opened.png' : otherIconPath + 'qp.png' }}"></image>
+        <image class="icon" style="{{ hasInsert?'padding-left:70rpx':'padding-left:160rpx' }}" bindtap="onOpenPaper" data-id="{{ paper.id }}" data-type="MS" src="{{ paper.checked ? otherIconPath + 'ms-checked.png' : otherIconPath + 'ms.png' }}"></image>
+        <block wx:if="{{ hasInsert }}">
+          <image class="icon" style="padding-left:70rpx" bindtap="onOpenPaper" data-id="{{ paper.id }}" data-type="Insert" src="{{ otherIconPath + 'insert.png' }}"></image>
         </block>
       </view>
     </view>

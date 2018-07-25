@@ -68,7 +68,7 @@ Page({
       },
       {
         id: 4,
-        name: "PureMath1"
+        name: "Geography"
       },
       {
         id: 5,

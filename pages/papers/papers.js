@@ -4,6 +4,8 @@ const date = new Date();
 //获取应用实例
 const app = getApp()
 
+const util = require('../../utils/util.js')
+
 Page({
 
   /**
@@ -18,7 +20,7 @@ Page({
     season: "Summer",
     value: [],
     papers: [],
-    isDownloading: false,
+    hasInsert: false,
     projectIconPath: '../../images/projects/',
     otherIconPath: '../../images/'
   },
@@ -29,9 +31,13 @@ Page({
   onLoad: function (options) {
     var cid = options.categoryId
     var pid = options.projectId
+    var category = app.globalData.categories[cid]
+    var project = app.globalData.allProjects[pid]
+    var hasInsert = (category.name == 'AS' || category.name == 'Alevel') && project.name == 'Geography'
     this.setData({
-      currentCategory: app.globalData.categories[cid],
-      currentProject: app.globalData.allProjects[pid]
+      currentCategory: category,
+      currentProject: project,
+      hasInsert: hasInsert
     })
     wx.setNavigationBarTitle({
       title: this.data.currentCategory.name
@@ -96,42 +102,25 @@ Page({
     console.log(year + season)
   },
   
-  onOpenQP: function(event) {
-    if(!this.data.isDownloading) {
-      this.setData({
-        isDownloading: true
-      })
-      var paperId = event.target.dataset.paperId
-      console.log(paperId) 
-
-      var url = "https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tec17ksub.pdf"
-
-      wx.downloadFile({
-        url: url,
-        success: function (res) {
-          var filePath = res.tempFilePath
-          wx.openDocument({
-            filePath: filePath,
-            success: function (res) {
-              console.log('打开文档成功')
-            }
-          })
-        }
-      })
-      this.setData({
-        isDownloading: false
-      })
-    }
-  },
-
-  onOpenMS: function(event) {
-    var paperId = event.target.dataset.paperId
-    console.log(paperId)
+  onOpenPaper: util.throttle(function(event) {
+    wx.showToast({
+      title: 'Downloading',
+      icon: 'loading'
+    })
+    var id = event.target.dataset.id
+    var type = event.target.dataset.type
+    
+    console.log(id + type)
 
     var url = "https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tec17ksub.pdf"
+    
+    if(type == 'Insert') {
+      url = "https://cs.nju.cn/zhouzh/zhouzh.files/publication/tec17ksub.pdf"
+    }
     wx.downloadFile({
       url: url,
       success: function (res) {
+        wx.hideToast()
         var filePath = res.tempFilePath
         wx.openDocument({
           filePath: filePath,
@@ -139,9 +128,16 @@ Page({
             console.log('打开文档成功')
           }
         })
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: 'Failed',
+          icon: 'loading',
+          duration: 1000
+        })
       }
     })
-  },
+  }, 2000),
 
   /**
    * 生命周期函数--监听页面初次渲染完成

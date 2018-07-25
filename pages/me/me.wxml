@@ -23,7 +23,7 @@
     <image class="arrow" src="../../images/arrow.png"></image>
   </view>
 
-  <view class="item">
+  <view class="item" >
     <image class="icon" src="../../images/contact.png"></image>
     <label class="text">Contact us</label>
     <image class="arrow" src="../../images/arrow.png"></image>
