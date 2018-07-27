@@ -89,9 +89,10 @@ Page({
     for (var i = 0; i < 50; i++) {
       paper_list.push({
         id: 1,
-        name: 12,
+        name: 1232424,
         opened: false,
-        checked: false
+        checked: false,
+        liked: true
       })
     }
     this.setData({
@@ -120,6 +121,16 @@ Page({
     wx.downloadFile({
       url: url,
       success: function (res) {
+        var now = new Date();
+        var exitTime = now.getTime() + 5000;
+        while (true) {
+          now = new Date();
+          if (now.getTime() < exitTime) {
+
+          } else {
+            break;
+          }
+        } 
         wx.hideToast()
         var filePath = res.tempFilePath
         wx.openDocument({
@@ -138,6 +149,10 @@ Page({
       }
     })
   }, 2000),
+
+  onLikePaper: function (e) {
+
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

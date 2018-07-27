@@ -9,9 +9,9 @@
 }
 
 .category {
-  font-size: 38rpx;
+  font-size: 40rpx;
   display: inline-block;
-  width: 19.5%;  
+  width: 23%;  
   color: #cdcdcd;
 }
 
@@ -24,14 +24,19 @@
 .project-list {
   position: absolute;
   top: 100rpx;
+  margin-top: 15rpx;
+  margin-bottom: 10rpx;
 }
 
 .project {
   display: flex;
   padding: 30rpx;
   align-items: center;
-  border-top: 1rpx solid #eee;
+  border: solid white;
+  border-width: 10rpx 20rpx 10rpx 20rpx;
+  border-radius: 30rpx;
   padding-bottom: 10rpx;
+  background: linear-gradient(to right, ghostwhite, #cdcdcd);
 }
 
 .selectedProject {
@@ -56,4 +61,6 @@
   display: block;
   width: 70%;
   margin-bottom: 20rpx;
+  text-align: right;
+  padding-right: 20rpx;
 }

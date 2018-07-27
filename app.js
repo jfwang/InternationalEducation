@@ -99,10 +99,6 @@ App({
       },
       {
         id: 3,
-        name: "AP"
-      },
-      {
-        id: 4,
         name: "Edexcel"
       }],
     allProjects: []
