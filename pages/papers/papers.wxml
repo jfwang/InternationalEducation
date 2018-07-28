@@ -27,15 +27,13 @@
 <scroll-view class="paper-list">
   <block wx:for="{{ papers }}" wx:key="id" wx:for-item="paper">
     <view class="paper">
-      <image class="like" bindtap="onLikePaper" style="padding-left:0rpx" data-id="{{ paper.id }}" src="{{ paper.liked ? otherIconPath + 'favorite.png' : otherIconPath + 'like.png' }}"></image>
+      <image class="like-icon" bindtap="onLikePaper" data-id="{{ paper.id }}" src="{{ paper.liked ? otherIconPath + 'favorite.png' : otherIconPath + 'like.png' }}"></image>
       <text class="paper-name">{{ paper.name }}</text>
-      <view class="icon-view">
-        <image class="icon" bindtap="onOpenPaper" data-id="{{ paper.id }}" data-type="QP" src="{{ paper.opened ? otherIconPath + 'qp-opened.png' : otherIconPath + 'qp.png' }}"></image>
-        <image class="icon" style="{{ hasInsert?'padding-left:50rpx':'padding-left:100rpx' }}" bindtap="onOpenPaper" data-id="{{ paper.id }}" data-type="MS" src="{{ paper.checked ? otherIconPath + 'ms-checked.png' : otherIconPath + 'ms.png' }}"></image>
-        <block wx:if="{{ hasInsert }}">
-          <image class="icon" style="padding-left:50rpx" bindtap="onOpenPaper" data-id="{{ paper.id }}" data-type="Insert" src="{{ otherIconPath + 'insert.png' }}"></image>
-        </block>
-      </view>
+      <image class="paper-icon" bindtap="onOpenPaper" data-id="{{ paper.id }}" data-type="QP" src="{{ paper.opened ? otherIconPath + 'qp-opened.png' : otherIconPath + 'qp.png' }}"></image>
+      <image class="paper-icon" style="{{ hasInsert?'padding-left:50rpx':'padding-left:100rpx' }}" bindtap="onOpenPaper" data-id="{{ paper.id }}" data-type="MS" src="{{ paper.checked ? otherIconPath + 'ms-checked.png' : otherIconPath + 'ms.png' }}"></image>
+      <block wx:if="{{ hasInsert }}">
+        <image class="paper-icon" style="padding-left:50rpx" bindtap="onOpenPaper" data-id="{{ paper.id }}" data-type="Insert" src="{{ otherIconPath + 'insert.png' }}"></image>
+      </block>
     </view>
   </block>
 </scroll-view>

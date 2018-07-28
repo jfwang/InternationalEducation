@@ -24,31 +24,31 @@
 .project-list {
   position: absolute;
   top: 100rpx;
+  width: 100%;
   margin-top: 15rpx;
   margin-bottom: 10rpx;
 }
 
 .project {
   display: flex;
-  padding: 30rpx;
   align-items: center;
   border: solid white;
-  border-width: 10rpx 20rpx 10rpx 20rpx;
-  border-radius: 30rpx;
-  padding-bottom: 10rpx;
+  border-width: 10rpx;
+  border-radius: 20rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
   background: linear-gradient(to right, ghostwhite, #cdcdcd);
 }
 
 .selectedProject {
-  background-color: whitesmoke;
-  color: grey;
+  color: whitesmoke;
 }
 
 .project-icon {
   width: 3rem;
   height: 3rem;
-  padding-left: 20rpx;
-  padding-right: 50rpx;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
 }
 
 .project-name {
@@ -60,7 +60,5 @@
   white-space: nowrap;
   display: block;
   width: 70%;
-  margin-bottom: 20rpx;
   text-align: right;
-  padding-right: 20rpx;
 }

@@ -10,16 +10,18 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        // wx.request({
-        //   url: 'https://api.weixin.qq.com/sns/jscode2session',
-        //   data: {
-        //     js_code: res.code,
-        //   },
-        //   method: 'GET',
-        //   success: function(res) {
-        //     console.log(res.data.openid)
-        //   }
-        // })
+        wx.request({
+          url: 'http://118.25.47.218/auth/login',
+          data: {
+            code: res.code,
+            name: 'Leopard',
+            type: 'STUDENT'
+          },
+          method: 'GET',
+          success: function(res) {
+            console.log(res.data.openid)
+          }
+        })
         console.log(res.code)
       }
     })
@@ -43,43 +45,6 @@ App({
         }
       }
     })
-
-    // 获取所有课程
-    var all_project_list = [
-      {
-        id: 0,
-        name: "Physics"
-      },
-      {
-        id: 1,
-        name: "Chemistry"
-      },
-      {
-        id: 2,
-        name: "Comparative Government"
-      },
-      {
-        id: 3,
-        name: "Chinese-Second Language"
-      },
-      {
-        id: 4,
-        name: "Geography"
-      },
-      {
-        id: 5,
-        name: "Computer Science"
-      },
-      {
-        id: 6,
-        name: "Mathematics-Additional"
-      },
-      {
-        id: 7,
-        name: "English-Second Language"
-      }
-    ]
-    this.globalData.allProjects = all_project_list
   },
 
   globalData: {
@@ -100,7 +65,6 @@ App({
       {
         id: 3,
         name: "Edexcel"
-      }],
-    allProjects: []
+      }]
   }
 })

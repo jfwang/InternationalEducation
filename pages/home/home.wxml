@@ -10,7 +10,7 @@
 
 <scroll-view class="project-list">
   <block wx:for="{{ projects[currentCategory.id] }}" wx:key="id" wx:for-item="project">
-    <view class="project {{ project.id===currentProject.id?'selectedProject':'' }}" bindtap="onSelectProject" data-project-id="{{ project.id }}">
+    <view class="project {{ project.id===currentProject.id?'selectedProject':'' }}" bindtap="onSelectProject" data-project="{{ project }}">
       <image class="project-icon" src="{{ projectIconPath + project.name + '.png' }}"></image>
       <text class="project-name">{{ project.name }}</text>
     </view>

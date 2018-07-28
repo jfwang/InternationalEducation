@@ -29,11 +29,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var cid = options.categoryId
-    var pid = options.projectId
+    var cid = options.cid
+    var pid = options.pid
+    var pname = options.pname
     var category = app.globalData.categories[cid]
-    var project = app.globalData.allProjects[pid]
-    var hasInsert = (category.name == 'AS' || category.name == 'Alevel') && project.name == 'Geography'
+    var project = {'id':pid, 'name':pname}
+    var hasInsert = (category.name == 'AS' || category.name == 'Alevel') && pname == 'Geography'
     this.setData({
       currentCategory: category,
       currentProject: project,
@@ -121,16 +122,6 @@ Page({
     wx.downloadFile({
       url: url,
       success: function (res) {
-        var now = new Date();
-        var exitTime = now.getTime() + 5000;
-        while (true) {
-          now = new Date();
-          if (now.getTime() < exitTime) {
-
-          } else {
-            break;
-          }
-        } 
         wx.hideToast()
         var filePath = res.tempFilePath
         wx.openDocument({

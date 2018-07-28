@@ -45,46 +45,24 @@ Page({
    */
   getProjectList: function () {
     var cid = this.data.currentCategory.id
-    // get project list with cid
-    console.log("Initializing project list of " + this.data.currentCategory.name)
+    var cname = this.data.currentCategory.name
+    // get project list of current category
+    console.log("Initializing project list of " + cname)
     
     var project_list = this.data.projects
-    project_list[cid] = [
-      {
-        id: 0,
-        name: "Physics"
+    var that = this
+    wx.request({
+      url: 'http://118.25.47.218/subject/all',
+      data: {
+        title: cname,
+        token: 'alevel66'
       },
-      {
-        id: 1,
-        name: "Chemistry"
-      },
-      {
-        id: 2,
-        name: "Comparative Government"
-      },
-      {
-        id: 3,
-        name: "Chinese-Second Language"
-      },
-      {
-        id: 4,
-        name: "Geography"
-      },
-      {
-        id: 5,
-        name: "Computer Science"
-      },
-      {
-        id: 6,
-        name: "Mathematics-Additional"
-      },
-      {
-        id: 7,
-        name: "English-Second Language"
-      }
-    ]
-    this.setData({
-      projects: project_list
+      method: 'GET',
+      success: function (res) {
+        project_list[cid] = res.data.subject
+        that.setData({
+          projects: project_list
+        })}
     })
   },
 
@@ -92,9 +70,10 @@ Page({
    * 选中课程
    */
   onSelectProject: function(event) {
-    var pid = event.currentTarget.dataset.projectId
-    var project = app.globalData.allProjects[pid]
-    var cid = this.data.currentCategory.id
+    var category = this.data.currentCategory
+    var project = event.currentTarget.dataset.project
+    var cid = category.id
+    var pid = project.id
     var newProjects = this.data.projects
     // 删除pid对应的课程
     for (var i = 0; i < newProjects[cid].length; i++) {
@@ -110,7 +89,7 @@ Page({
       currentProject: project,
       projects: newProjects
     })
-    var url = '../papers/papers?categoryId=' + this.data.currentCategory.id + '&projectId=' + pid
+    var url = '../papers/papers?cid=' + this.data.currentCategory.id + '&pid=' + this.data.currentProject.id + '&pname=' + this.data.currentProject.name
     wx.navigateTo({
       url: url
     })
