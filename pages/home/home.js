@@ -52,7 +52,7 @@ Page({
     var project_list = this.data.projects
     var that = this
     wx.request({
-      url: 'http://118.25.47.218/subject/all',
+      url: app.globalData.subjectUrl,
       data: {
         title: cname,
         token: 'alevel66'

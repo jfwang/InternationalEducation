@@ -14,10 +14,12 @@ Page({
   data: {
     currentCategory: {},
     currentProject: {},
+    seasonMap: {},
     years: [],
-    year: date.getFullYear(),
     seasons: [],
+    year: date.getFullYear(),
     season: "Summer",
+    seasonId: 0,
     value: [],
     papers: [],
     hasInsert: false,
@@ -34,94 +36,132 @@ Page({
     var pname = options.pname
     var category = app.globalData.categories[cid]
     var project = {'id':pid, 'name':pname}
-    var hasInsert = (category.name == 'AS' || category.name == 'Alevel') && pname == 'Geography'
     this.setData({
       currentCategory: category,
-      currentProject: project,
-      hasInsert: hasInsert
+      currentProject: project
     })
     wx.setNavigationBarTitle({
       title: this.data.currentCategory.name
     })
-    this.getYearsAndSeasons()
-    this.getPaperList()
+    this.initialize()
   },
 
-  getYearsAndSeasons: function () {
-    var cid = this.data.currentCategory.id
+  initialize: function () {
+    var that = this
+    var cname = this.data.currentCategory.name
     var pid = this.data.currentProject.id
-    // get years and seasons with cid and pid
-    var year_list = [2017, 2016, 2015, 2014]
-    var season_list = ["Summer", "Winter"]
-    this.setData({
-      years: year_list,
-      seasons: season_list,
-      year: year_list[0],
-      season: season_list[0]
+    // get seasons with cname and pid
+    wx.request({
+      url: app.globalData.seasonUrl,
+      data: {
+        title: cname,
+        subject: pid,
+        token: 'alevel66'
+      },
+      method: 'GET',
+      success: function (res) {
+        var ret = res.data.season
+        var seasonMap = {}
+        var years = []
+        var seasons = []
+        for(var i=0;i<ret.length;i++) {
+          var seasonYear = ret[i].year
+          var seasonName = ret[i].season
+          var seasonId = ret[i].id
+          if (!seasonMap[seasonYear]) {
+            seasonMap[seasonYear] = {}
+          }
+          seasonMap[seasonYear][seasonName] = seasonId
+          
+          if(years.indexOf(seasonYear) === -1) {
+            years.push(seasonYear)
+          }
+          if (seasons.indexOf(seasonName) === -1) {
+            seasons.push(seasonName)
+          }
+        }
+
+        years.sort(function(a, b) {
+          return b - a
+        })
+        var year = years[0]
+
+        seasons.sort()
+        var season = seasons[0]
+
+        var seasonId = seasonMap[year][season]
+        
+        that.setData({
+          seasonMap: seasonMap,
+          years: years,
+          seasons: seasons,
+          year: year,
+          season: season,
+          seasonId: seasonId
+        })
+        that.getPaperList()
+      }
     })
   },
 
   getPaperList: function() {
-    var cid = this.data.currentCategory.id
-    var pid = this.data.currentProject.id
-    var year = this.data.year
-    var season = this.data.season
     // get paper with cid, pid, year, season
-    var papers = []
-    for(var i = 0; i < 50; i ++) {
-      papers.push({
-        id: i,
-        name: 11,
-        opened: false,
-        checked: false
-      })
-    }
-    this.setData({
-      papers: papers
-    }) 
+    var that = this
+    wx.request({
+      url: app.globalData.paperUrl,
+      data: {
+        season: this.data.seasonId,
+        token: 'alevel66'
+      },
+      method: 'GET',
+      success: function (res) {
+        var papers = res.data.paper
+        console.log(papers)
+        var hasInsert = false
+        for(var index in papers) {
+          if(papers[index].hasInsert) {
+            hasInsert = true
+            break
+          }
+        }
+        that.setData({
+          papers: res.data.paper,
+          hasInsert: hasInsert
+        })
+      }
+    })
   },
 
   bindChange: function (e) {
     const val = e.detail.value
     var year = this.data.years[val[0]]
     var season = this.data.seasons[val[1]]
-    // 根据年份和季节获取试卷列表
-    var paper_list = []
-    for (var i = 0; i < 50; i++) {
-      paper_list.push({
-        id: 1,
-        name: 1232424,
-        opened: false,
-        checked: false,
-        liked: true
-      })
-    }
+    var seasonId = this.data.seasonMap[year][season]
     this.setData({
       year: year,
       season: season,
-      papers: paper_list
+      seasonId: seasonId
     })
-    console.log(year + season)
+    this.getPaperList()
   },
   
   onOpenPaper: util.throttle(function(event) {
     wx.showToast({
       title: 'Downloading',
-      icon: 'loading'
+      icon: 'loading',
+      duration: 10000
     })
     var id = event.target.dataset.id
     var type = event.target.dataset.type
-    
-    console.log(id + type)
 
-    var url = "https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/tec17ksub.pdf"
-    
-    if(type == 'Insert') {
-      url = "https://cs.nju.cn/zhouzh/zhouzh.files/publication/tec17ksub.pdf"
-    }
     wx.downloadFile({
-      url: url,
+      url: app.globalData.downloadUrl + type,
+      data: {
+        id: id,
+        token: 'alevel66'
+      },
       success: function (res) {
+        console.log(res)
         wx.hideToast()
         var filePath = res.tempFilePath
         wx.openDocument({

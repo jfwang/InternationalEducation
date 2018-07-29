@@ -17,30 +17,18 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    if (app.globalData.userInfo) {
+  onLoad: function () {
+    if (app.globalData.userInfo && app.globalData.userInfo.openId) {
       this.setData({
         userInfo: app.globalData.userInfo,
-        hasUserInfo: true
+        hasUserInfo: true,
+        motto: 'Welcome to PastPapers!'
       })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
+    } else if (!this.data.canIUse) {
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
+          this.login(res.userInfo)
         }
       })
     }
@@ -49,12 +37,36 @@ Page({
   getUserInfo: function (e) {
     console.log(e)
     if (e.detail.userInfo) {
-      app.globalData.userInfo = e.detail.userInfo
-      this.setData({
-        userInfo: e.detail.userInfo,
-        hasUserInfo: true
-      })
+      this.login(e.detail.userInfo)
     }
+  },
+
+  login: function (userInfo) {
+    // 登录
+    var that = this
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: app.globalData.authUrl,
+          data: {
+            code: res.code,
+            name: userInfo.nickName
+          },
+          method: 'GET',
+          success: function (res) {
+            console.log(res.data)
+            userInfo['openId'] = '123456'//res.data.openId
+            app.globalData.userInfo = userInfo
+            that.setData({
+              userInfo: userInfo,
+              hasUserInfo: true,
+              motto: 'Welcome to PastPapers!'
+            })
+          }
+        })
+      }
+    })
   },
 
   /**
